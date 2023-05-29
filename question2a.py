@@ -53,7 +53,7 @@ for player, roundnums in teamOnBSite.items(): # Players and round nums where the
             boolVal = gameState.withinBoundary(coordPoint, coordinateList) # returns boolean of whether coordinate val is within the set shape 
             if boolVal: # If the coordinates are within the chokepoint then it is assumed they have entered B site that round through the chokepoint Increments the time when they pass through that zone 
                 numTimesPassThruZone += 1 
-                print(f"Player: {player} passed through the chokepoint on round number: {i}")
+                print(f"{player} passed through the chokepoint on round number: {i}")
                 break
 
 print(f"\nNumber of times the chokepoint was passed through to get to B: {numTimesPassThruZone}")
