@@ -77,7 +77,8 @@ for roundnum,players in peopleEnteredBSite.items():
         avgTime /= numWithRiflesOrSMGs
 avgTime = math.ceil(avgTime) # This is the average time elapsed of 2 or more players who enter B site with rifles or smgs
 
+# Prints the time remaining for the round in minute, second format
 timer = 115-avgTime
-m, s = divmod(timer, 60)
+m, s = divmod(timer, 60) 
 
 print(f"{m}:{s}")
