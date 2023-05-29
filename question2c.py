@@ -43,7 +43,7 @@ coordData = pd.DataFrame({'X': totalCoordinatesX, 'Y': totalCoordinatesY})
 
 
 # Set the number of bins
-bins = 55  # Adjust the number of bins as desired
+bins = 75  # Adjust the number of bins as desired. More bins means smaller squares but more detailed
 
 # Create a 2D histogram
 fig, ax = plt.subplots()
