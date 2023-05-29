@@ -10,8 +10,8 @@ team2Players = df.loc[(df["team"] == "Team2")]["player"].unique().tolist()
 
 # All the methods are pretty much the same as they were from last time
 def getCoordsRound(player, round, team):
-    xcoordsPlayer = df.loc[(df["team"] == team) & (df["round_num"] == round) & (df["player"] == player)]["x"].tolist()
-    ycoordsPlayer = df.loc[(df["team"] == team) & (df["round_num"] == round) & (df["player"] == player)]["y"].tolist()
+    xcoordsPlayer = df.loc[(df["team"] == team) & (df["round_num"] == round) & (df["player"] == player) & (df["area_name"] == "BombsiteB")]["x"].tolist()
+    ycoordsPlayer = df.loc[(df["team"] == team) & (df["round_num"] == round) & (df["player"] == player) & (df["area_name"] == "BombsiteB")]["y"].tolist()
     return xcoordsPlayer, ycoordsPlayer
 
 def getRoundNums(team, side, area, player): 
