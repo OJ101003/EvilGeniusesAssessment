@@ -36,9 +36,10 @@ def playerTimesMethod():
  We then sift through each row, get the inventory dictionary, and then make a new dictionary that shows what weapon classes were used
  The dictionary key is the weapon class, and the value is a True boolean
  If the weapon class is in the dictionary then that means that at one point during the round the player had that weapon
+ The areaBefore argument is if you want to check the inventory before they enter an area. The default ignores that argument
  '''
-def playerInventory(player, side, roundnum): # Have self at beginning when putting into code
-    inv = df.loc[(df["side"]==side) & (df["round_num"] == roundnum) & (df["player"] == player) & (df["is_alive"] == True)]["inventory"]
+def playerInventory(player, side, roundnum, areaBefore = ""): # Have self at beginning when putting into code
+    inv = df.loc[(df["side"]==side) & (df["round_num"] == roundnum) & (df["player"] == player) & (df["is_alive"] == True) & (df["area_name"]!= areaBefore)]["inventory"]
     uniqueWeaponsForPlayer = {}
     for i in inv:
         if i[0]["weapon_class"] not in uniqueWeaponsForPlayer:
@@ -60,25 +61,37 @@ for i in playerTimesOnBsite: # i is the player names
         else:
             peopleEnteredBSite[j] = [i] # If round num is new then make a new key in the dictionary and assign it player name
 
-# This for loop gets the round nums and player lists from the previous for loops dictionary
+
+# This for loop gets all the rounds where there were at least 2 players who entered B site and had rifles or smgs
+# Stores the rounds in a list
+roundsWithRiflesSmgs = []
 for roundnum,players in peopleEnteredBSite.items():
-    numWithRiflesOrSMGs = 0 # Integer that counts num of players with rifles or smgs
-    avgTime = 0 # Avg seconds a player enters B site with a rifle or smg
-    for i in players: # This for loop goes through each player
-        currentInv = playerInventory(i,"T",roundnum) # Gets inventory of player on T side on a specific round num
-        # The if statement checks to see if the player has either a rifle or smg
-        # If they do then numWithRiflesOrSMGs increments by 1 and the seconds the player entered B site is added to avg time
+    numWithRifles = 0
+    avgTime = 0
+    for i in players:
+        currentInv = playerInventory(i,"T",roundnum)
         if ("Rifle" in currentInv or "SMG" in currentInv):
-            numWithRiflesOrSMGs += 1
-            avgTime += playerTimesOnBsite[i][roundnum]
-    if numWithRiflesOrSMGs > 1: 
-        # If the amount of people in a round that entered B site given the requirements is greater than 1
-        # We divide the avg time by the number of people who entered B site with rifles or smgs
-        avgTime /= numWithRiflesOrSMGs
-avgTime = math.ceil(avgTime) # This is the average time elapsed of 2 or more players who enter B site with rifles or smgs
+            numWithRifles += 1
+    if numWithRifles > 1:
+        roundsWithRiflesSmgs.append(roundnum)
 
-# Prints the time remaining for the round in minute, second format
+
+avgTime = 0 # Average entry timer
+# For loop that goes through each round where there were at least 2 players who entered B site and had rifles or smgs
+# The for loop then gets the average entry time of everyone on the team who entered B site that round.
+for rounds in roundsWithRiflesSmgs:
+    tempTime = 0
+    numPlayers = 0
+    for player in team2Players:
+        if player in peopleEnteredBSite[rounds]:
+            numPlayers += 1
+            tempTime += getRoundSeconds('Team2', 'T', 'BombsiteB', player)[rounds]
+    avgTime += tempTime/numPlayers
+
+# Divides the average time by the number of rounds there were 2 people with rifles and smgs
+avgTime /= len(roundsWithRiflesSmgs)
+avgTime = math.ceil(avgTime) # This is the average time elapsed when they enter B site with at least 2 rifles
 timer = 115-avgTime
-m, s = divmod(timer, 60) 
-
-print(f"{m}:{s}")
+minutes = timer // 60
+seconds = timer % 60
+print(f"%02i:%02i" % (minutes, seconds)) # This is the final answer
