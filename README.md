@@ -17,7 +17,7 @@ Number of times the chokepoint was passed through to get to B: 2
 ```
 
 ## Question 2b (Script in question2b.py):
-I found that the average timer that players on Team2 on T side entered B site with at least 2 rifles or SMGs was 1:16. The output was just ```1:16```.
+I found that the average timer that players on Team2 on T side entered B site with at least 2 rifles or SMGs was 1:24. The output was just ```01:24```.
 
 ## Question 2c (Script in question2c.py):
 Using methods found in previous scripts and using MatPlotLib, I made a heatmap that showed where the most activity was on BombsiteB. After doing in game testing and looking at the coordinates on my heatmap and in game, I found that the area of the map classified as "BombsiteB" was larger than what it was led to be using the map provided by "Simple Radar." The heatmap provided shows the areas that Team 2 have the most frequency of being at in Bombsite B based off the colors on the heatmap. Using the program it also showed coordinates where the most frequently visited areas were so you could go in game and go to the coordinates. 
