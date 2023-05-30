@@ -3,7 +3,7 @@
 - Pandas
 - MatPlotLib
 
-I used MatPlotLib for question 2C because it already has a lot of packages in common with Numpy, and because it's the easiest way I found to get a descriptive heatmap that is interactable and can be used to get specific coordinates on the grid provided.
+I used MatPlotLib for question 2C because it already has a lot of packages in common with Numpy, and because it's the easiest way I found to get a descriptive heatmap that is interactable and can be used to get specific coordinates on the grid provided. The benefits of using an external library far exceeded any downsides by providing greater accuracy, more details, and allowing customization.
 
 ## Question 2a (Script in question2a.py):
 I determined that entering B site from the light blue boundary was **not** a common strategy used by Team 2 on T side. Using the code in question2a.py, I found that only player 5 and 9 used the choke point to enter B site on round 16 meaning only 2 people used the choke point as an entryway to B site while given that Team 2 is on T side.
@@ -28,7 +28,7 @@ Using methods found in previous scripts and using MatPlotLib, I made a heatmap t
 <img src="https://images2.imgbox.com/be/ae/jKskm2m9_o.png" alt= “2COutput” width="70%" height = width>
 </p>
 <p align="center">
-<strong>The areas highlighted blue are the general locations where there is most activity</strong>
+<strong>The areas highlighted blue are the general locations where there is most activity by Team2 on CT side</strong>
 <img src="https://images2.imgbox.com/fc/58/qWUF3Olj_o.jpg" alt= “MapHighlight” width="50%" height = width >
 </p>
 
